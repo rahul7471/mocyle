@@ -1,0 +1,23 @@
+<md-toolbar layout="column"   class="md-padding about">
+    <div class="md-toolbar-tools">
+      <h1 style="font-size: 1.8em;font-weight: bold;color:#FFF;"><hr/>ABOUT US<hr/></h1>
+    </div>
+
+  </md-toolbar>
+  <md-content class="md-padding about"  layout ng-controller="aboutusController as about" style="height: 38em;">
+ <div layout layout layout-align="start center"  class="aboutslide" ng-show="about.page==='page1'" ng-animate="'animate'"><p flex="50">Mocyle is a company working towards excellence in the bike servicing & repairing, and believe in pursuing business through best service. Our team comes in industry comprise of a highly motivated set of expert mechanics. Our goal is to give our best bike servicing by providing genuine parts.</p>
+ 	<md-icon md-svg-icon="mechanic" class="avatar" style="width: 35%;height: 35%;left: 55%;position: absolute;" aria-label="promechanic"/>
+</div>
+<div layout layout-align="start center"  layout-padding class="aboutslide" ng-show="about.page==='page2'" ng-animate="'animate'">
+	<md-icon md-svg-icon="mechanic1"  style="width: 39%;height: 39%;left: -3em;position: relative; margin:0em;padding:0em" aria-label="promechanic"></md-icon>
+	<p flex="50" style="margin: 25px 16px 40px -2.5em;">We are pledged to be 100% transparent when it comes to your bike service and repair.Team of experts will examine your bike and suggest what are the things that need attention so you get a clear picture to decide what you want to do from there.</p>
+</div>
+
+</div>
+<div layout id="aboutusnav" layout-align="center center" layout-padding>
+  <md-radio-group ng-model="about.page" layout >
+      <md-radio-button value="page1" class="md-primary"></md-radio-button>
+      <md-radio-button value="page2" class="md-primary"></md-radio-button>
+    </md-radio-group>
+</div>
+  </md-content>

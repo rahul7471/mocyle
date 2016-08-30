@@ -1,0 +1,51 @@
+<md-toolbar class="md-padding" style="height:2em;" ng-cloak>
+    <div class="md-toolbar-tools">
+      <h1 style="font-size: 1.8em;font-weight: bold;color:#FFF;">Our Services</h1>
+    </div>
+  </md-toolbar>
+  <md-content layout="column" layout-padding md-scroll-y class="md-padding ourservice" >
+      <div layout="row">
+        <div flex="30" style="background: rgb(0,131,143);">
+        <md-card>
+        <md-card-title style=" background-color:rgb(16, 93, 99);">
+         <img ng-src="{{ourservice.goldurl}}" class="md-card-image" alt="Washed Out">
+        </md-card-title>
+        <md-card-content>
+     <md-list class="md-dense" flex>
+        <md-list-item class="md-3-line">
+          <div class="md-list-item-text" layout="column" >
+            <div ng-repeat="(key,value) in ourservice.goldfeatures" layout="row"><h3>{{ key }}</h3><span flex></span>
+              <i class="material-icons" ng-if="value=='yes'" style="color:green;">&#xE5CA;</i>
+              <i class="material-icons" ng-if="value=='no'" style="color:red;">&#xE5CD;</i>
+
+            </div>
+          </div>
+        </md-list-item>
+      </md-list>
+        </md-card-content>
+      </md-card>
+
+            </div>
+        <span flex="15">
+        </span>
+        <div flex="30" style="background:rgb(0,131,143);">
+        <md-card>
+        <md-card-title style="background-color:rgb(6, 33, 35);">
+          <img ng-src="{{ourservice.platinumurl}}" class="md-card-image" alt="Washed Out">
+        </md-card-title>
+        <md-card-content>
+     <md-list class="md-dense" flex>
+        <md-list-item class="md-3-line" >
+          <div class="md-list-item-text" layout="column">
+            <div ng-repeat="(key,value) in ourservice.platinumfeatures" layout="row"><h3>{{ key }}</h3><span flex></span>
+                 <i class="material-icons" ng-if="value=='yes'" style="color:green;">&#xE5CA;</i>
+                  <i class="material-icons" ng-if="value=='no'" style="color:red;">&#xE5CD;</i>
+            </div>
+          </div>
+        </md-list-item>
+      </md-list>
+        </md-card-content>
+      </md-card>
+        </div>
+           </div>
+  </md-content>

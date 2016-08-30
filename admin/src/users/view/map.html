@@ -1,0 +1,24 @@
+ <md-dialog class="fullscreen-dialog" flex="100">
+  <md-dialog-content layout="column">
+ <md-content layout="column" >  
+
+   <md-toolbar flex="30">
+    <div class="md-toolbar-tools" flex="100" layout layout-align="end center">
+      <h1 flex style="font-size: 1.8em;font-weight: bold;color:#FFF;">ADDRESS</h1>
+
+      <span flex="60" style="background:none;">{{mc.customerlocation}}
+      </span>
+    </div>
+
+  </md-toolbar>
+              
+          <ui-gmap-google-map  flex="70" center="mc.map.center" zoom="mc.map.zoom" draggable="true" options="mc.options">
+                  <ui-gmap-marker coords="mc.marker.coords" options="mc.marker.options" events="mc.marker.events" idkey="mc.marker.id">
+                  </ui-gmap-marker>
+              </ui-gmap-google-map>
+                   
+               
+         
+  </md-content>
+</md-dialog-content>
+    </md-dialog>

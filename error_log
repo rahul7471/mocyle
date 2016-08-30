@@ -1,0 +1,8 @@
+[14-Aug-2016 23:45:51 UTC] PHP Fatal error:  Call to a member function query() on a non-object in /home/mocyle1/public_html/admin.php on line 12
+[14-Aug-2016 23:48:03 UTC] PHP Fatal error:  Call to a member function query() on a non-object in /home/mocyle1/public_html/admin.php on line 11
+[14-Aug-2016 23:55:14 UTC] PHP Fatal error:  Call to a member function query() on a non-object in /home/mocyle1/public_html/admin.php on line 12
+[16-Aug-2016 21:55:12 UTC] PHP Fatal error:  Call to undefined method Admin::undefined() in /home/mocyle1/public_html/admin.php on line 88
+[16-Aug-2016 21:57:04 UTC] PHP Fatal error:  Call to undefined method Admin::undefined() in /home/mocyle1/public_html/admin.php on line 88
+[16-Aug-2016 22:11:47 UTC] PHP Fatal error:  Call to a member function query() on a non-object in /home/mocyle1/public_html/admin.php on line 62
+[16-Aug-2016 22:11:47 UTC] PHP Fatal error:  Call to a member function query() on a non-object in /home/mocyle1/public_html/admin.php on line 62
+[16-Aug-2016 22:12:25 UTC] PHP Fatal error:  Call to a member function query() on a non-object in /home/mocyle1/public_html/admin.php on line 44

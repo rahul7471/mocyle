@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" >
+  <head>
+    <title>Admin Dashboard</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/admin/assets/app.css"/>
+
+    <style type="text/css">
+        /**
+         * Hide when Angular is not yet loaded and initialized
+         */
+        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+          display: none !important;
+        }
+    </style>
+
+  </head>
+
+  <body ng-app="starterApp" layout="column" ng-controller="AdminController as ul" ng-cloak>
+
+    <md-toolbar layout="row">
+      <md-button class="menu" hide-gt-sm ng-click="ul.toggleList()" aria-label="Show User List">
+      <i class="material-icons">&#xE5D2;</i>
+      </md-button>
+      <h1>ADMIN DashBoard</h1>
+      <span flex></span>
+      <div ng-if="ul.isLoggedin" layout="column" flex="30" layout-align="end center">
+      <md-fab-speed-dial flex="100" ng-hide="ul.hidden" md-direction="left" md-open="ul.isOpen" style="top: 0px;"
+                       class="md-scale md-fab-top-right" ng-class="{ 'md-hover-full': ul.isOpen }"
+                       ng-click="ul.isOpen=!ul.isOpen">
+      <md-fab-trigger>
+        <md-button aria-label="menu" class="md-fab">
+        <md-tooltip md-direction="bottom" md-visible="true">
+              Hello {{ul.admin.name}}
+            </md-tooltip>
+          <i class="material-icons" style="font-size: 48px;margin-top: 3.5px;margin-left: -2px;">&#xE853;</i>
+        </md-button>
+      </md-fab-trigger>
+      <md-fab-actions>
+        <div ng-repeat="item in ul.operation">
+          <md-button aria-label="{{item.name}}" class="md-fab md-raised md-mini"
+                     ng-click="ul.admin.selection=item">
+            <md-tooltip md-direction="{{item.direction}}" md-visible="tooltipVisible"
+                        md-autohide="false">
+              {{item.name}}
+            </md-tooltip>
+            <md-icon md-svg-src="{{item.icon}}" aria-label="{{item.name}}" style="color:#000;"></md-icon>
+          </md-button>
+        </div>
+      </md-fab-actions>
+    </md-fab-speed-dial>
+      </div>
+    </md-toolbar>
+
+    <div flex layout="row">
+
+        <md-sidenav  ng-click="ul.toggleList()" md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left" class="md-whiteframe-z2" >
+          <md-list layout-padding>
+            <md-list-item ng-repeat="it in ul.users">
+                <md-button ng-click="ul.selectUser(it)" ng-class="{'selected' : it === ul.selected }">
+                  <i class="material-icons" style="font-size:48px;">{{it.avatar}}</i>
+                  {{it.name}}
+                </md-button>
+            </md-list-item>
+          </md-list>
+        </md-sidenav>
+        <div flex layout="column">
+        <md-tabs md-stretch-tabs ng-show="ul.booking" class="md-primary" md-selected="data.selectedIndex">
+          <md-tab id="tab1" aria-controls="tab1-content">
+            Quick Booking
+          </md-tab>
+          <md-tab id="tab2" aria-controls="tab2-content">
+            Normal Normal
+          </md-tab>
+        </md-tabs>
+        <md-content flex id="content">
+        <md-list flex>
+        <md-subheader class="md-no-sticky">{{ul.selected.name}}</md-subheader>
+        <md-list-item class="md-3-line" ng-repeat="customer in ul.customers track by $index">
+          <h3>B.NO - {{customer.id}}<h3>
+          <div class="md-list-item-text" layout="column" layout-padding>
+            <h2>{{ customer.phone_no}}</h2>
+
+            <h4>{{ customer.bike_detail}}</h4>
+            <p>{{ customer.address }}  </p>
+            <span layout ng-click="ul.openmap(customer)" >
+            <i class="material-icons">my_location</i>
+            <h3>Locate Customer</h3>
+            </span>
+           
+            
+          </div>
+        </md-list-item>
+      </md-list>
+        </md-content>
+      </div>
+
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-animate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-aria.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-messages.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js">
+    </script>
+    <script src="https://cdn.rawgit.com/angular-ui/angular-google-maps/2.1.5/dist/angular-google-maps.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.5.0/lodash.min.js"></script>
+    <script src="/admin/src/users/Users.js"></script>
+    <script src="/admin/src/users/UserController.js"></script>
+    <script src="/admin/src/users/UserService.js"></script>
+
+    <script type="text/javascript">
+
+          angular
+              .module('starterApp', ['ngMaterial','uiGmapgoogle-maps', 'ngMessages','users'])
+              .config(function($mdThemingProvider,$mdIconProvider,uiGmapGoogleMapApiProvider){
+
+                    $mdIconProvider
+                      .icon("menu" , "/assets/svg/menu.svg" ,24);
+
+
+                      $mdThemingProvider.theme('default')
+                          .primaryPalette('brown')
+                          .accentPalette('red');
+
+                     uiGmapGoogleMapApiProvider.configure({
+                                                         key: 'AIzaSyCQXbsDEXcUWsoCa_yA8Dn4rNaZCh_Z4qA',
+                                                         v: '3.24', //defaults to latest 3.X anyhow
+                                                         libraries: 'places'
+                                                      });
+
+              });
+
+    </script>
+
+  </body>
+</html>

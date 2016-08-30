@@ -1,0 +1,77 @@
+<md-toolbar class="md-padding" layout-fill>
+    <div class="md-toolbar-tools">
+      <h1 style="font-size: 1.8em;font-weight: bold;color:#FFF;">Book<i class="material-icons">build</i>Now
+</h1>
+    </div>
+
+  </md-toolbar>
+ 
+<md-content class="md-padding" style="padding-left:0px;padding-top:0px;height: 20em;background: rgba(255,255,255,.9);"
+ layout="column" layout-padding>
+<div layout class='steps-container'>
+  <div class='steps'  ng-class="{'active' : sc.bike.maker }"  ng-click="sc.selecttab('maker',$event)">
+    <span>Select Maker</span>
+  </div>
+  <div class='steps' ng-class="{'active' : sc.bike.modal }" ng-click="sc.selecttab('modal',$event)">
+    <span>Select Model</span>
+  </div>
+  <div class='steps' ng-class="{'active' : sc.bike.pickup }" >
+    <span>Pickup Date</span>
+  </div>   
+  <div layout="column" flex="10" layout-align="center center">
+    <span flex class="small-line"></span>
+    OR
+    <span flex class="small-line"></span>
+  </div>
+  
+    <md-button class="md-raised md-primary customcolor" style="color:#FFF;font-size:2em;" flex ng-click="sc.quickbook();">Quick Book
+  </md-button>
+</div>
+                <form name="bikeForm">
+        <div layout ="column">
+           <md-input-container  ng-if="sc.bike.tab=='maker'" class="md-block" flex="100"  >
+            <label>Searh Bike maker From List</label>
+              <md-select ng-model="sc.bike.maker">
+                <md-option ng-repeat="Maker in sc.makers" value="{{Maker.maker}}">
+                  {{Maker.maker}}
+                </md-option>
+              </md-select>
+          </md-input-container>
+ 
+             <md-input-container  ng-if="sc.bike.tab=='modal'" class="md-block" flex="100"  >
+            <label>Select Modal From List</label>
+            <md-select ng-model="sc.bike.modal">
+              <md-option ng-repeat="Modal in sc.modals" value="{{Modal.model}}">
+                {{Modal.model}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+  
+            <div ng-if="sc.bike.tab=='pickup'" class="pickup" flex="100" >
+            <label>Select Pickup Date</label>
+            <hr>
+            <md-datepicker ng-model="sc.bike.pickup" md-placeholder="Pickup Date" required 
+                  md-min-date="sc.minDate" style="position: absolute;left: 5em;">
+          </md-date-picker>
+           </div>
+    </div>
+  
+  
+    <div layout="row" layout-align="center center" layout-padding conten>
+
+        <img  ng-if="sc.bike.maker" ng-src="/app/assets/images/{{sc.bike.maker}}.png" style="width:160px;position: absolute;top: 8em;left:0em;"/>
+
+<span flex ="30" layout-align="center end" style="position: absolute;top: 7em;left:32%;"><p style="color:#000;">{{sc.bike.modal}}</p></span>
+<span flex ="30" style="position: absolute;top: 11em;left:60%;">{{sc.bike.pickup | date}}</span>
+    </div>
+  <div layout="column" style="position: absolute;width: 100%;top: 15em;">
+    <div flex="20">
+    </div>
+       <md-progress-linear  flex md-mode="determinate" value="{{sc.determinateValue}}"></md-progress-linear>
+<div flex="60" layout-align="end end">
+
+     </div>
+  </div>
+    </form>
+
+  </md-content>

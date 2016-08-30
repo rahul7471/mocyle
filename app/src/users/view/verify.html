@@ -1,0 +1,86 @@
+<md-toolbar layout="column"   class="md-padding">
+    <div class="md-toolbar-tools">
+      <h1 style="font-size: 1.3em;font-weight: bold;color:#FFF;">Please Verify</h1>
+    </div>
+
+  </md-toolbar>
+  <md-content ng-hide="verify.sendotp" layout="column" style="height: 40em;margin-left: 14.7%;">
+    <md-input-container flex
+      <!-- Use floating label instead of placeholder -->
+     <i class="material-icons" style="font-size: 48px;margin-top: 3.5px;margin-left: -2px;">&#xE853;</i>
+      <input ng-model="verify.name" type="text">
+    </md-input-container>
+    <md-input-container flex layout >
+      <i flex class="material-icons md-48"  ng-style="{'color' : verify.phoneactive ? '#33e413' : '#FEFEFE'}">
+          &#xE325;
+      </i>
+      <input ng-model="verify.phone" type="text" placeholder="Phone" name="verify.phonename" required   
+      ng-change="verify.onChange('phone')" style="font-size: 1.4em;color: rgb(254, 254, 254);" autocomplete="off">
+      <div ng-messages="verify.phonename.$error" ng-show="verify.phonename.$touched">
+        <div ng-message="required">This field is required</div>
+        <div ng-message="phonematch">Your email address or phone number is invalid</div>
+      </div>
+    </md-input-container>
+    <md-input-container flex layout >
+      <!-- Use floating placeholder instead of label -->
+       <i flex class="material-icons md-48"  ng-style="{'color' : verify.mailactive ? '#F75252' : '#FEFEFE'}">
+      &#xE0E1;
+      </i>
+      <input ng-model="verify.mail" type="text" placeholder="Email" name="verify.mailname" required ng-change="verify.onChange('mail')" style="font-size: 1.4em;color: rgb(254, 254, 254);" autocomplete="off">
+      <div ng-messages="verify.mailname.$error" ng-show="verify.mailname.$touched">
+        <div ng-message="required">This field is required</div>
+        <div ng-message="mailmatch">Your email address or phone number is invalid</div>
+      </div>
+    </md-input-container>
+    <md-input-container flex layout class="md-block">
+      <md-button class="md-fab md-mini" flex aria-label="Mini FAB" ng-click="verify.sendOtpMail">
+
+    </md-button>
+    </md-input-container>
+
+  </md-content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <md-content class="md-padding"  ng-show="verify.sendotp" layout="column" style="height: 10em;background-color:rgba(255, 255, 255, 0.8);">
+  <form  layout flex="70" name="verify.otpForm">
+    <md-input-container md-no-float style="top: 1.5em;margin-left: 7.1%;width: 60%;">
+     <label style="font-size: 1.9em;">Enter OTP</label>
+     <input ng-model="verify.otp" type="text" placeholder="* * * *" name="otp" required ng-change="verify.onChangeOTP()" style="margin-left: 1em;font-size: 1.8em;color: rgb(7, 114, 127);" autocomplete="off">
+    <div ng-messages="verify.otpForm.otp.$error" ng-show="verify.otpForm.otp.$touched">
+        <div ng-message="required">This field is required</div>
+        <div ng-message="wrongOtp">OTP You Entered is invalid</div>
+      </div>
+</md-input-container>
+</form>
+<div flex="50" layout layout-align="center center" class="booknow"  ng-show="verify.showbook">
+  <md-button  flex ng-click="verify.bookservice();" style="top: -1em;height: 3em;color: rgb(43, 200, 221);
+  background-color: black;border-radius: 1em;" style="padding-right: 15%;">Book
+  <md-icon md-svg-icon="service" class="md-48" ng-style="{'color' : verify.showbook ? '#2bc8dd' : '#FEFEFE'}">&#xE325;
+</md-icon>&nbsp;&nbsp;Now 
+</div>
+ </md-content>

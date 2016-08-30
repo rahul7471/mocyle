@@ -1,0 +1,20 @@
+
+<md-bottom-sheet class="md-grid" layout="column" ng-cloak style="position:fixed;">
+  <div layout="row" layout-align="center center">
+    <h1 style="margin-left:0%"><hr/>CONTACT US<hr/></h1>
+  </div>
+  <div>
+    <md-list flex layout="row" layout-align="center center">
+      <md-list-item ng-repeat="item in vm.items">
+        <div>
+        <md-button class="md-grid-item-content" ng-click="vm.contactUser(item)" md-no-focus-style="true">
+        <md-tooltip md-autohide md-direction="top">
+            {{item.name}}
+          </md-tooltip>
+          <md-icon md-svg-icon="{{item.icon}}" class="bigfont"></md-icon>
+        </md-button>
+        </div>
+      </md-list-item>
+    </md-list>
+  </div>
+</md-bottom-sheet>

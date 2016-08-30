@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" >
+  <head>
+    <title>Mocyle</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <link rel="icon" type="image/x-icon"  href="/app/assets/images/favicon.ico" >
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/app/assets/app.css"/>
+    <style type="text/css">
+        /**
+         * Hide when Angular is not yet loaded and initialized
+         */
+        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+          display: none !important;
+        }
+
+    </style>
+  </head>
+  <body ng-app="mocyleApp" layout="column" ng-controller="mainController as ul" ng-cloak>
+ <div md-header-picture ng-show="ul.backgroundimgurl" ng-style= "{'background' : 'linear-gradient(
+      rgba(0, 0, 0, 0.6),
+      rgba(0, 0, 0, 0.6)),url('+ul.backgroundimgurl+')'}">
+         </div>
+         <div layout="column" class="scroll">
+    <md-toolbar layout="row" class="transparent">
+      <md-button class="menu" hide-gt-sm ng-click="ul.toggleList()" aria-label="Show User List">
+        <md-icon md-svg-icon="menu" ></md-icon>
+      </md-button>
+      <img ng-src="/app/assets/images/logo.png" style="height:100%;width:220px; padding-top:0px;" id="logo"/>
+
+      <span flex></span>
+      <md-button class="share" md-no-ink ng-click="ul.makeContact(ul.selected)" aria-label="contact us">
+        <i class="material-icons md-48">phone</i>
+          </md-button>
+    </md-toolbar>
+
+<div layout="row">
+       <md-sidenav  ng-click="ul.toggleList()" md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left" class="md-whiteframe-z2" id="customsidenav" >
+          <md-list layout-padding>
+            <md-list-item ng-repeat="it in ul.users">
+                <md-button ng-click="ul.selectUser(it)" ng-class="{'selected' : it === ul.selected }">
+                  <md-icon md-svg-icon="{{it.avatar}}" class="bigfont" ng-class="{'bigfontselected' : it===ul.selected }">
+                </md-icon>
+                  {{it.name}}
+                </md-button>
+            </md-list-item>
+          </md-list>
+        </md-sidenav>
+
+       <ng-view class="well slide" flex></ng-view>
+      </div>
+   
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-animate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-aria.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-messages.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28//angular-route.min.js">
+    </script>
+             <!-- angular-goole-maps -->
+    <script src="https://cdn.rawgit.com/angular-ui/angular-google-maps/2.1.5/dist/angular-google-maps.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.5.0/lodash.min.js"></script>
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
+         <script type="text/javascript" src="/app/assets/ng-fx.js"></script>
+
+
+    <script src="/app/src/users/Users.js"></script>
+    <script src="/app/src/users/UserController.js"></script>
+    <script src="/app/src/users/UserService.js"></script>
+
+    <script type="text/javascript">
+
+          angular
+              .module('mocyleApp', ['ngMaterial','ngRoute','uiGmapgoogle-maps','ngMessages','moduleConnector'])
+              .config(function($mdThemingProvider, $mdIconProvider,$routeProvider,uiGmapGoogleMapApiProvider,
+                $mdDateLocaleProvider){
+
+                  $mdIconProvider
+                      .defaultIconSet("/app/assets/svg/avatars.svg"          ,128)
+                      .icon("menu"       , "/app/assets/svg/menu.svg"        ,24)
+                      .icon("contact"    , "/app/assets/svg/call.svg"        ,512)
+                      .icon("email"      , "/app/assets/svg/gmail.svg"       ,512)
+                      .icon("facebook"   , "/app/assets/svg/facebook.svg"    ,512)
+                      .icon("twitter"    , "/app/assets/svg/twitter.svg"     ,512)
+                      .icon("phone"      , "/app/assets/svg/phone.svg"       ,512)
+                      .icon("message"    , "/app/assets/svg/message.svg"     ,512)
+                      .icon("home"       , "/app/assets/svg/home.svg"        ,512)
+                      .icon("service"    , "/app/assets/svg/service.svg"     ,512)
+                      .icon("bookservice", "/app/assets/svg/bookservice.svg" ,512)
+                      .icon("mechanic"   ,  "/app/assets/svg/mechanic.svg"   ,512)
+                      .icon("mechanic1"  ,  "/app/assets/svg/mechanic1.svg"  ,512)
+                      .icon("team"       ,   "/app/assets/svg/team.svg"      ,512);
+
+                      $mdThemingProvider.theme('default')
+                          .primaryPalette('cyan')
+                          .accentPalette('red');
+
+                      $routeProvider  .when('/home', {
+                                        templateUrl: '/app/src/users/view/home.html',
+                                        controller: 'mainController',
+                                        controllerAs : 'ul'
+                                      })
+                                      .when('/service', {
+                                        templateUrl: '/app/src/users/view/service.html',
+                                        controller: 'serviceController',
+                                        controllerAs : 'sc'
+                                      })
+                                      .when('/ourservice', {
+                                        templateUrl: '/app/src/users/view/ourservice.html',
+                                        controller : 'ourService',
+                                        controllerAs : 'ourservice'
+                                      })
+                                      .when('/about', {
+                                        templateUrl: '/app/src/users/view/aboutus.html',
+                                        controller : 'aboutusController'
+                                      })
+                                      .when('/location',{
+                                        templateUrl : '/app/src/users/view/location.html',
+                                        controller : 'locationController'
+                                      })
+                                      .when('/verify',{
+                                        templateUrl : '/app/src/users/view/verify.html',
+                                        controller : 'verifyController',
+                                        controllerAs : 'verify' 
+                                      })
+
+                                      .otherwise({
+                                          template: " "
+                                        });
+
+                        uiGmapGoogleMapApiProvider.configure({
+                                                         key: 'AIzaSyCQXbsDEXcUWsoCa_yA8Dn4rNaZCh_Z4qA',
+                                                         v: '3.24', //defaults to latest 3.X anyhow
+                                                         libraries: 'places'
+                                                    });
+                        $mdDateLocaleProvider.formatDate = function(date) {
+                                                    if(date)
+                                                        return moment(date).format('DD-MMM-YYYY');
+                                                      else
+                                                        return '';
+                                                  };
+
+                      
+              });
+
+    </script>
+
+  </body>
+</html>

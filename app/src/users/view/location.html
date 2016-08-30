@@ -1,0 +1,49 @@
+<md-toolbar layout="column"  class="md-padding">
+    <div class="md-toolbar-tools" >
+      <h1 style="font-size: 1.8em;font-weight: bold;color:#FFF;">ADDRESS</h1>
+    </div>
+
+  </md-toolbar>
+
+<md-content  layout="column" class="md-padding location" ng-controller="locationController as location">  
+<div layout flex layout-align="center center">
+  <div  flex  style="padding-left:10%;">
+       <md-button 
+                 title="open map"
+                 aria-label="open map"
+                 ng-click="location.openmap($event)"
+                  >
+       <img src="/app/assets/images/map-circle.png" style="width: 100%; height: 100%;"/>
+
+      </md-button>
+     
+    </div>
+    <div flex="20" layout="column" layout-align="center center" style="margin-top: 1em;">
+<div  flex class="line"></div>
+<div  flex="20" class="circle">
+OR
+</div>
+<div flex class="line"></div>
+    </div>
+<div flex="50" layout="column" layout-align="none start">
+                <md-autocomplete md-no-cache="true"
+                 md-selected-item="location.selectedItem"
+                 md-search-text-change="location.search(location.searchText)"
+                 md-search-text="location.searchText"
+                 md-items="item in location.search(location.searchText)"
+                 md-item-text="item"
+                 md-selected-item-change="location.selectedItemChange(location.selectedItem)"
+                 md-min-length="0"
+                 placeholder="Type your address">
+             <md-item-template>
+                     <span md-highlight-text="location.searchText" md-highlight-flags="^i">{{item}}</span>
+             </md-item-template>
+    <md-not-found>
+        No matches found for "{{location.searchText}}".
+    </md-not-found>
+              </md-autocomplete>
+ </div>
+ </div>
+  </md-content>
+
+

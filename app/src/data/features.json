@@ -1,0 +1,39 @@
+ { "gold" : [{
+	 "Prepaid Services (Labour)" : "yes", 
+ 	"24 point General service checklist" : "yes",
+ 	"Expert Advice" : "yes",
+ 	"Servicing at your doorstep" : "yes",
+ 	"Vehicle serviced in 100 minutes" : "yes",
+ 	"Avail anytime throughout the valid time period" : "yes",
+ 	"Periodic Reminders" : "yes",
+ 	"On-Call Advice & Support (if needed)" : "yes",
+ 	"Road Side Break down Assistance" : "yes",
+ 	"Puncture Assistance" : "no",
+ 	"Petrol Assistance" : "no",
+ 	"Discount in Pro Sevice" : "no",
+ 	"Discount in Spare Vehicle" : "no",
+ 	"3rd Party offers" : "no"
+ 			},{
+ 				"imgUrl" : "/app/assets/images/gold.png"
+ 				}],
+ "platinum" : [{
+ "Prepaid Services (Labour)" : "yes",
+ "24 point General service checklist" : "yes",
+ "Expert Advice" : "yes",
+ "Servicing at your doorstep" : "yes",
+ "Vehicle serviced in 100 minutes" : "yes",
+ "Avail anytime throughout the valid time period" : "yes",
+ "Periodic Reminders" : "yes",
+ "On-Call Advice & Support (if needed)" : "yes",
+ "Road Side Break down Assistance" : "yes",
+ "Puncture Assistance" : "yes",
+ "Petrol Assistance" : "yes",
+ "Discount in Pro Sevice" : "yes",
+ "Discount in Spare Vehicle" : "yes",
+ "3rd Party offers" : "yes"
+ },{
+ 				"imgUrl" : "/app/assets/images/platinum.png"
+ 	}]
+}
+
+ 

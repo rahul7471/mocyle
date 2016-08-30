@@ -1,0 +1,47 @@
+<md-dialog aria-label="Change Password" ng-cloak>
+
+    <form name="prc.passreset" data-ng-submit="prc.changepass()">
+
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Change Your Password</h2>
+                <span flex></span>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+
+                <md-input-container class="md-block">
+                    <label>Current Password:</label>
+                    <input ng-model="prc.newpass.oldpass" type="password" required >
+                </md-input-container>
+
+                <md-input-container class="md-block">
+                    <label>New Password:</label>
+                    <input ng-model="prc.newpass.pass" type="password" required >
+                </md-input-container>
+
+                <md-input-container class="md-block">
+                    <label>New Password Again:</label>
+                    <input ng-model="prc.newpass.againpass" type="password" required name="password" 
+                            ng-change="prc.onchange()" required>
+                    <div ng-messages="prc.passreset.password.$error" ng-show="prc.passreset.password.$touched">
+                    <div ng-message="passwrd">The password you entered didn't match</div>
+                  </div>
+                </md-input-container>
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button type="submit" class="md-primary"
+                       ng-class="{'md-raised md-hue-1': (loginForm.$dirty && loginForm.$valid) }"
+                       aria-label="OK">
+                Change Password
+            </md-button>
+        </md-dialog-actions>
+
+    </form>
+
+</md-dialog>
